@@ -10,6 +10,8 @@
     }
   ],
   "require": {
+    "larapack/dd": "1.*",
+    "ext-pdo": "*"
   },
   "autoload": {
     "psr-4": {"app\\": "app/"}

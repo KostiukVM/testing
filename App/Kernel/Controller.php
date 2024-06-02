@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\Core;
+namespace App\Kernel;
 
 abstract class Controller
 {

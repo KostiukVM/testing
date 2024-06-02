@@ -2,25 +2,25 @@
 
 namespace App\Models;
 
-use App\Core\Model;
+use App\Kernel\Model;
 
 use App\Interfaces\Model_Interface;
 use PDO;
 
 class Book extends Model implements Model_Interface{
     public static function getAll() {
-        $stmt = self::$db->query("SELECT * FROM book");
+        $stmt = self::$db->query("SELECT * FROM books");
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
     public static function getById($id) {
-        $stmt = self::$db->prepare("SELECT * FROM book WHERE id = :id");
+        $stmt = self::$db->prepare("SELECT * FROM books WHERE id = :id");
         $stmt->execute(['id' => $id]);
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
     public static function add($data) {
-        $stmt = self::$db->prepare("INSERT INTO book (name, author, year, genereId) 
+        $stmt = self::$db->prepare("INSERT INTO books (name, author, year, genereId) 
                                     VALUES (:name, :author, :year, :genereId)");
         return $stmt->execute($data);
     }
@@ -29,7 +29,7 @@ class Book extends Model implements Model_Interface{
     public static function update($id, $data) {
         $data['id'] = $id;
         $stmt = self::$db->prepare(
-            "UPDATE book SET 
+            "UPDATE books SET 
                 name = :name, 
                 author = :author, 
                 year = :year, 

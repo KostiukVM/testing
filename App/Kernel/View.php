@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Core;
+namespace App\Kernel;
 
 class View {
     public static function render($view, $data = []): void

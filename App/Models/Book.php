@@ -7,9 +7,12 @@ use App\Kernel\Model;
 use App\Interfaces\Model_Interface;
 use PDO;
 
-class Book extends Model implements Model_Interface{
+class Book extends Model implements Model_Interface {
     public static function getAll() {
-        $stmt = self::$db->query("SELECT * FROM books");
+        $stmt = self::$db->query("SELECT b.id, b.name as book_name, a.name as author_name, g.name as genre_name 
+                                  FROM books b
+                                  JOIN genres g ON b.genre_id = g.id");
+
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
@@ -30,9 +33,9 @@ class Book extends Model implements Model_Interface{
         $data['id'] = $id;
         $stmt = self::$db->prepare(
             "UPDATE books SET 
-                name = :name, 
-                author = :author, 
-                year = :year, 
+                name    = :name, 
+                author  = :author, 
+                year    = :year, 
                 enereId = :genereId  
             WHERE id = :id");
         return $stmt->execute($data);

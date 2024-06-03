@@ -2,31 +2,24 @@
 
 namespace App\Kernel;
 
-
 class Router
 {
     private array $routes = [];
 
     public function add(string $route, string $controller, string $action): void
     {
-        $this->routes[$route] = ['controller' => $controller, 'action' => $action];
+        $this->routes[$route] = compact('controller', 'action');
     }
 
     public function dispatch(string $url): void
     {
-        foreach ($this->routes as $route => $info) {
-            $pattern = preg_replace('/\{[a-zA-Z]+\}/', '([a-zA-Z0-9_\-]+)', $route);
-            if (preg_match('#^' . $pattern . '$#', $url, $matches)) {
-                array_shift($matches);
-                $controller = $info['controller'];
-                $action = $info['action'];
-
-                $controller = new $controller;
-                call_user_func_array([$controller, $action], $matches);
-                return;
-            }
+        if (array_key_exists($url, $this->routes)) {
+            $controllerName = $this->routes[$url]['controller'];
+            $actionName = $this->routes[$url]['action'];
+            $controller = new $controllerName();
+            $controller->$actionName();
+        } else {
+            echo "Router not found";
         }
-        echo "Router not found";
     }
 }
-

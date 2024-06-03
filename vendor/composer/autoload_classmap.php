@@ -6,6 +6,19 @@ $vendorDir = dirname(__DIR__);
 $baseDir = dirname($vendorDir);
 
 return array(
+    'App\\Controllers\\BookController' => $baseDir . '/App/Controllers/BookController.php',
+    'App\\Controllers\\GenreController' => $baseDir . '/App/Controllers/GenreController.php',
+    'App\\Controllers\\RecordController' => $baseDir . '/App/Controllers/RecordController.php',
+    'App\\Controllers\\VisitorsController' => $baseDir . '/App/Controllers/VisitorsController.php',
+    'App\\Interfaces\\Model_Interface' => $baseDir . '/App/Interfaces/Model_Interface.php',
+    'App\\Kernel\\Controller' => $baseDir . '/App/Kernel/Controller.php',
+    'App\\Kernel\\Model' => $baseDir . '/App/Kernel/Model.php',
+    'App\\Kernel\\Router' => $baseDir . '/App/Kernel/Router.php',
+    'App\\Kernel\\View' => $baseDir . '/App/Kernel/View.php',
+    'App\\Models\\Book' => $baseDir . '/App/Models/Book.php',
+    'App\\Models\\Genre' => $baseDir . '/App/Models/Genre.php',
+    'App\\Models\\Record' => $baseDir . '/App/Models/Record.php',
+    'App\\Models\\Visitor' => $baseDir . '/App/Models/Visitor.php',
     'Composer\\InstalledVersions' => $vendorDir . '/composer/InstalledVersions.php',
     'Symfony\\Component\\VarDumper\\Caster\\AmqpCaster' => $vendorDir . '/symfony/var-dumper/Caster/AmqpCaster.php',
     'Symfony\\Component\\VarDumper\\Caster\\ArgsStub' => $vendorDir . '/symfony/var-dumper/Caster/ArgsStub.php',

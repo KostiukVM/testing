@@ -8,11 +8,11 @@ CREATE TABLE `books`(
     `year` BIGINT NOT NULL,
     `genreId` BIGINT NOT NULL
 );
-CREATE TABLE `genre`(
+CREATE TABLE `genres`(
     `id` BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
     `name` VARCHAR(255) NOT NULL
 );
-CREATE TABLE `record`(
+CREATE TABLE `records`(
     `id` BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
     `visitorId` BIGINT NOT NULL,
     `bookId` BIGINT NOT NULL,
@@ -25,9 +25,11 @@ CREATE TABLE `visitors`(
     `email` VARCHAR(255) NOT NULL,
     `phone` BIGINT NOT NULL
 );
+
+
 ALTER TABLE
-    `books` ADD CONSTRAINT `books_genreid_foreign` FOREIGN KEY(`genreId`) REFERENCES `genre`(`id`);
+    `books` ADD CONSTRAINT `books_genreid_foreign` FOREIGN KEY(`genreId`) REFERENCES `genres`(`id`);
 ALTER TABLE
-    `record` ADD CONSTRAINT `record_bookid_foreign` FOREIGN KEY(`bookId`) REFERENCES `books`(`id`);
+    `records` ADD CONSTRAINT `record_bookid_foreign` FOREIGN KEY(`bookId`) REFERENCES `books`(`id`);
 ALTER TABLE
-    `record` ADD CONSTRAINT `record_visitorid_foreign` FOREIGN KEY(`visitorId`) REFERENCES `visitors`(`id`);
+    `records` ADD CONSTRAINT `record_visitorid_foreign` FOREIGN KEY(`visitorId`) REFERENCES `visitors`(`id`);

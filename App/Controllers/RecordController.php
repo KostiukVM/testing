@@ -3,21 +3,25 @@
 namespace App\Controllers;
 
 use App\Kernel\Controller;
+use App\Models\Book;
+use App\Models\Genre;
 use App\Models\Record;
 
 class RecordController extends Controller {
     public function index() {
         $records = Record::getAll();
-        $this->render('records/index', ['records' => $records]);
+        $this->render('record/index', ['records' => $records]);
     }
 
     public function add() {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             Record::add($_POST);
-            header('Location: /records');
+            header('Location: /record');
             exit();
         } else {
-            $this->render('records/add');
+            $books = Book::getAll();
+            $genres = Genre::getAll();
+            $this->render('records/add', ['books' => $books, 'genres' => $genres]);
         }
     }
 
@@ -25,10 +29,11 @@ class RecordController extends Controller {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             Record::update($id, $_POST);
             header('Location: /records');
-            exit();
         } else {
             $record = Record::getById($id);
-            $this->render('records/edit', ['record' => $record]);
+            $books = Book::getAll();
+            $genres = Genre::getAll();
+            $this->render('records/edit', ['record' => $record, 'books' => $books, 'genres' => $genres]);
         }
     }
 }

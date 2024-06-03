@@ -1,24 +1,25 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Edit Book</title>
-</head>
-<body>
 <h1>Edit Book</h1>
-<form method="post" action="">
-    <label for="name">Name:</label>
-    <input type="text" name="name" id="name" value="<?php echo htmlspecialchars($book['name']); ?>" required>
-    <br>
-    <label for="author">Author:</label>
-    <input type="text" name="author" id="author" value="<?php echo htmlspecialchars($book['author']); ?>" required>
-    <br>
-    <label for="year">Year:</label>
-    <input type="number" name="year" id="year" value="<?php echo htmlspecialchars($book['year']); ?>" required>
-    <br>
-    <label for="genereId">Genre ID:</label>
-    <input type="number" name="genereId" id="genereId" value="<?php echo htmlspecialchars($book['genereId']); ?>" required>
-    <br>
+<form method="POST" action="/books/edit/<?= $book['id'] ?>">
+    <label for="name">Book Name:</label>
+    <input type="text" name="name" id="name" value="<?= $book['book_name'] ?>" required>
+
+    <label for="author_id">Author:</label>
+    <select name="author_id" id="author_id" required>
+        <?php foreach ($authors as $author): ?>
+            <option value="<?= $author['id'] ?>" <?= $author['id'] == $book['author_id'] ? 'selected' : '' ?>>
+                <?= $author['name'] ?>
+            </option>
+        <?php endforeach; ?>
+    </select>
+
+    <label for="genre_id">Genre:</label>
+    <select name="genre_id" id="genre_id" required>
+        <?php foreach ($genres as $genre): ?>
+            <option value="<?= $genre['id'] ?>" <?= $genre['id'] == $book['genre_id'] ? 'selected' : '' ?>>
+                <?= $genre['name'] ?>
+            </option>
+        <?php endforeach; ?>
+    </select>
+
     <button type="submit">Update</button>
 </form>
-</body>
-</html>

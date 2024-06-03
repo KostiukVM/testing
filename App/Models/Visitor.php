@@ -7,10 +7,10 @@ use App\Kernel\Model;
 use App\Interfaces\Model_Interface;
 use PDO;
 
-class Visitor extends Model implements Model_Interface{
+class Visitor extends Model implements Model_Interface {
     public static function getAll() {
         $stmt = self::$db->query("SELECT * FROM visitors");
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+                return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
     public static function getById($id) {

@@ -5,6 +5,7 @@ namespace App\Controllers;
 use App\Kernel\Controller;
 use App\Models\Visitor;
 
+// Приклад контролера для VisitorsController
 class VisitorsController extends Controller {
     public function index() {
         $visitors = Visitor::getAll();
@@ -15,10 +16,8 @@ class VisitorsController extends Controller {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             Visitor::add($_POST);
             header('Location: /visitors');
-            exit();
-
         } else {
-            $this->render('visitors/add');
+            $this->render('visitors/add', []);
         }
     }
 
@@ -26,8 +25,6 @@ class VisitorsController extends Controller {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             Visitor::update($id, $_POST);
             header('Location: /visitors');
-            exit();
-
         } else {
             $visitor = Visitor::getById($id);
             $this->render('visitors/edit', ['visitor' => $visitor]);

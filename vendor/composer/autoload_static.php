@@ -13,22 +13,18 @@ class ComposerStaticInit2a8fbda59af6255c15fb6b451fd68063
     );
 
     public static $prefixLengthsPsr4 = array (
-        'a' => 
-        array (
-            'app\\' => 4,
-        ),
         'S' => 
         array (
             'Symfony\\Polyfill\\Mbstring\\' => 26,
             'Symfony\\Component\\VarDumper\\' => 28,
         ),
+        'A' => 
+        array (
+            'App\\' => 4,
+        ),
     );
 
     public static $prefixDirsPsr4 = array (
-        'app\\' => 
-        array (
-            0 => __DIR__ . '/../..' . '/App',
-        ),
         'Symfony\\Polyfill\\Mbstring\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/polyfill-mbstring',
@@ -37,9 +33,26 @@ class ComposerStaticInit2a8fbda59af6255c15fb6b451fd68063
         array (
             0 => __DIR__ . '/..' . '/symfony/var-dumper',
         ),
+        'App\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/App',
+        ),
     );
 
     public static $classMap = array (
+        'App\\Controllers\\BookController' => __DIR__ . '/../..' . '/App/Controllers/BookController.php',
+        'App\\Controllers\\GenreController' => __DIR__ . '/../..' . '/App/Controllers/GenreController.php',
+        'App\\Controllers\\RecordController' => __DIR__ . '/../..' . '/App/Controllers/RecordController.php',
+        'App\\Controllers\\VisitorsController' => __DIR__ . '/../..' . '/App/Controllers/VisitorsController.php',
+        'App\\Interfaces\\Model_Interface' => __DIR__ . '/../..' . '/App/Interfaces/Model_Interface.php',
+        'App\\Kernel\\Controller' => __DIR__ . '/../..' . '/App/Kernel/Controller.php',
+        'App\\Kernel\\Model' => __DIR__ . '/../..' . '/App/Kernel/Model.php',
+        'App\\Kernel\\Router' => __DIR__ . '/../..' . '/App/Kernel/Router.php',
+        'App\\Kernel\\View' => __DIR__ . '/../..' . '/App/Kernel/View.php',
+        'App\\Models\\Book' => __DIR__ . '/../..' . '/App/Models/Book.php',
+        'App\\Models\\Genre' => __DIR__ . '/../..' . '/App/Models/Genre.php',
+        'App\\Models\\Record' => __DIR__ . '/../..' . '/App/Models/Record.php',
+        'App\\Models\\Visitor' => __DIR__ . '/../..' . '/App/Models/Visitor.php',
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
         'Symfony\\Component\\VarDumper\\Caster\\AmqpCaster' => __DIR__ . '/..' . '/symfony/var-dumper/Caster/AmqpCaster.php',
         'Symfony\\Component\\VarDumper\\Caster\\ArgsStub' => __DIR__ . '/..' . '/symfony/var-dumper/Caster/ArgsStub.php',

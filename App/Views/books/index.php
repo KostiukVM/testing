@@ -1,5 +1,5 @@
 <h1>Books</h1>
-<a href="/books/add">Add Book</a>
+<a href="/?page=/books/add">Add Book</a>
 <table>
     <tr>
         <th>ID</th>
@@ -15,7 +15,7 @@
             <td><?= $book['author_name'] ?></td>
             <td><?= $book['genre_name'] ?></td>
             <td>
-                <a href="/books/edit/<?= $book['id'] ?>">Edit</a>
+                <a href="/?page=/books/edit&id=<?= $book['id'] ?>">Edit</a>
             </td>
         </tr>
     <?php endforeach; ?>

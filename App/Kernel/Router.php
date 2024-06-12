@@ -13,13 +13,21 @@ class Router
 
     public function dispatch(string $url): void
     {
-        if (array_key_exists($url, $this->routes)) {
-            $controllerName = $this->routes[$url]['controller'];
-            $actionName = $this->routes[$url]['action'];
-            $controller = new $controllerName();
-            $controller->$actionName();
-        } else {
-            echo "Router not found";
+        $url = trim($url, '/');
+        foreach ($this->routes as $route => $info) {
+            if ($url === trim($route, '/')) {
+                $controllerName = $info['controller'];
+                $actionName = $info['action'];
+                $controller = new $controllerName();
+                $controller->$actionName();
+                return;
+            }
         }
+        echo "Route not found";
+    }
+
+    public function getUrl(string $route): string
+    {
+        return '/' . trim($route, '/');
     }
 }

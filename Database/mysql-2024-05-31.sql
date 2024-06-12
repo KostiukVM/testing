@@ -22,6 +22,7 @@ CREATE TABLE `records`(
 CREATE TABLE `visitors`(
     `id` BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
     `name` VARCHAR(255) NOT NULL,
+    `lastname` VARCHAR(255) NOT NULL,
     `email` VARCHAR(255) NOT NULL,
     `phone` BIGINT NOT NULL
 );

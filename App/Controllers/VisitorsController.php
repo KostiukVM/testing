@@ -5,29 +5,42 @@ namespace App\Controllers;
 use App\Kernel\Controller;
 use App\Models\Visitor;
 
-// Приклад контролера для VisitorsController
 class VisitorsController extends Controller {
-    public function index() {
+    public function index(): void
+    {
         $visitors = Visitor::getAll();
         $this->render('visitors/index', ['visitors' => $visitors]);
     }
 
-    public function add() {
+    public function add(): void
+    {
+        global $router;
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            Visitor::add($_POST);
-            header('Location: /visitors');
+            $visitor = new Visitor();
+            $visitor->name = $_POST['name'];
+            $visitor->lastname = $_POST['lastname'];
+            $visitor->email = $_POST['email'];
+            $visitor->phone = $_POST['phone'];
+            $visitor->save();
+            header('Location: ' . $router->getUrl('/visitors'));
         } else {
-            $this->render('visitors/add', []);
+            $this->render('/visitors/add');
         }
     }
 
-    public function edit($id) {
+    public function edit($id): void
+    {
+        global $router;
+        $visitor = Visitor::getById($id);
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            Visitor::update($id, $_POST);
-            header('Location: /visitors');
+            $visitor->name = $_POST['name'];
+            $visitor->lastname = $_POST['lastname'];
+            $visitor->email = $_POST['email'];
+            $visitor->phone = $_POST['phone'];
+            $visitor->save();
+            header('Location: ' . $router->getUrl('/visitors'));
         } else {
-            $visitor = Visitor::getById($id);
-            $this->render('visitors/edit', ['visitor' => $visitor]);
+            $this->render('/visitor/edit', ['visitor' => $visitor]);
         }
     }
 }

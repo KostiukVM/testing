@@ -7,7 +7,7 @@ use App\Kernel\Model;
 use App\Interfaces\Model_Interface;
 use PDO;
 
-class Book extends Model implements Model_Interface {
+class Book extends Model {
     public static function getAll() {
         $stmt = self::$db->query("SELECT b.id, b.name as book_name, a.name as author_name, g.name as genre_name 
                                   FROM books b

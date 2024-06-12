@@ -3,30 +3,45 @@
 namespace App\Models;
 
 use App\Kernel\Model;
-
-use App\Interfaces\Model_Interface;
 use PDO;
 
-class Visitor extends Model implements Model_Interface {
+class Visitor extends Model {
+    public int $id;
+    public string $name;
+    public string $lastname;
+    public string $email;
+    public int $phone;
+
     public static function getAll() {
         $stmt = self::$db->query("SELECT * FROM visitors");
-                return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
     public static function getById($id) {
         $stmt = self::$db->prepare("SELECT * FROM visitors WHERE id = :id");
         $stmt->execute(['id' => $id]);
-        return $stmt->fetch(PDO::FETCH_ASSOC);
+        return $stmt->fetchObject(__CLASS__);
     }
 
-    public static function add($data) {
-        $stmt = self::$db->prepare("INSERT INTO visitors (name, email, phone) VALUES (:name, :email, :phone)");
-        return $stmt->execute($data);
-    }
-
-    public static function update($id, $data) {
-        $data['id'] = $id;
-        $stmt = self::$db->prepare("UPDATE visitors SET name = :name, email = :email, phone = :phone WHERE id = :id");
-        return $stmt->execute($data);
+    public function save(): void
+    {
+        if (isset($this->id)) {
+            $stmt = self::$db->prepare("UPDATE visitors SET name = :name, lastname = :lastname, email = :email, phone = :phone WHERE id = :id");
+            $stmt->execute([
+                'name' => $this->name,
+                'lastname' => $this->lastname,
+                'email' => $this->email,
+                'phone' => $this->phone,
+                'id' => $this->id
+            ]);
+        } else {
+            $stmt = self::$db->prepare("INSERT INTO visitors (name, lastname, email, phone) VALUES (:name, :lastname, :email, :phone)");
+            $stmt->execute([
+                'name' => $this->name,
+                'lastname' => $this->lastname,
+                'email' => $this->email,
+                'phone' => $this->phone
+            ]);
+        }
     }
 }

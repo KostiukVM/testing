@@ -29,7 +29,7 @@ global $router;
             <input type="email" class="form-control" id="email" name="email" required>
         </div>
         <div class="form-group">
-            <label for="phone">Phone:</label>
+            <label for="phone">Phone: (+38__________)</label>
             <input type="text" class="form-control" id="phone" name="phone" required>
         </div>
         <button type="submit" class="btn btn-primary" name="Add">Add</button>

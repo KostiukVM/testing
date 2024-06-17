@@ -11,23 +11,34 @@ class GenreController extends Controller {
         $this->render('genres/index', ['genres' => $genres]);
     }
 
-    public function add() {
+    public function add(): void
+    {
+        global $router;
+        $genres = Genre::getAll();
+
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            Genre::add($_POST);
-            header('Location: /genres');
-            exit();
+            $genre       = new Genre();
+            $genre->name = $_POST['name'];;
+            $genre->save();
+            header('Location: ' . $router->getUrl('/genres'));
         } else {
-            $this->render('genres/add');
+            $this->render('genres/add', ['genres' => $genres]);
         }
     }
 
     public function edit($id) {
+        global $router;
+        $genre = Genre::getById($id);
+        if (!$genre) {
+            echo "Genre not found";
+            return;
+        }
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            Genre::update($id, $_POST);
-            header('Location: /genres');
+            $genre->name = $_POST['name'];
+            $genre->save();
+            header('Location:' . $router->getUrl('/genres'));
             exit();
         } else {
-            $genre = Genre::getById($id);
             $this->render('genres/edit', ['genre' => $genre]);
         }
     }

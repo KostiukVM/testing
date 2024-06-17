@@ -21,6 +21,7 @@ $router->add('/visitors/edit/{id}', VisitorsController::class, 'edit');
 $router->add('/books', BookController::class, 'index');
 $router->add('/books/add', BookController::class, 'add');
 $router->add('/books/edit/{id}', BookController::class, 'edit');
+$router->add('/books/delete/{id}', BookController::class, 'delete');
 
 
 $router->add('/genres', GenreController::class, 'index');
@@ -29,4 +30,4 @@ $router->add('/genres/edit/{id}', GenreController::class, 'edit');
 
 $router->add('/records', RecordController::class, 'index');
 $router->add('/records/add', RecordController::class, 'add');
-$router->add('/records/edit/{id}', RecordController::class, 'edit');
+$router->add('/records/return/{id}', RecordController::class, 'returnBook');

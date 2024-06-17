@@ -1,0 +1,15 @@
+старт сервера
+php -S localhost:8000 -t public
+
+допоміжний файл для створення бази даних
+Database/mysql-2024-05-31.sql
+
+допоміжний файл для підключення до бд
+config.php
+
+допоміжний файл для створення тестових записів в бд
+Database/test_records_db.sql
+
+точка входу
+public/index.php
+

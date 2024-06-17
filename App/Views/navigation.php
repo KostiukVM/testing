@@ -46,6 +46,9 @@ global $router;
                     <li class="nav-item">
                         <a class="nav-link" href="<?php echo $router->getUrl('/records'); ?>">Records</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="<?php echo $router->getUrl('/genres'); ?>">Genres</a>
+                    </li>
                 </ul>
             </div>
         </div>

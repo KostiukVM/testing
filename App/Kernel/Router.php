@@ -15,11 +15,17 @@ class Router
     {
         $url = trim($url, '/');
         foreach ($this->routes as $route => $info) {
-            if ($url === trim($route, '/')) {
+            $route = trim($route, '/');
+            $routePattern = preg_replace('/\{[^\}]+\}/', '([^/]+)', $route);
+
+            if (preg_match('#^' . $routePattern . '$#', $url, $matches)) {
+                array_shift($matches);
+
                 $controllerName = $info['controller'];
                 $actionName = $info['action'];
                 $controller = new $controllerName();
-                $controller->$actionName();
+
+                call_user_func_array([$controller, $actionName], $matches);
                 return;
             }
         }

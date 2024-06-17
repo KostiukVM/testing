@@ -10,7 +10,7 @@ class Visitor extends Model {
     public string $name;
     public string $lastname;
     public string $email;
-    public int $phone;
+    public string $phone;
 
     public static function getAll() {
         $stmt = self::$db->query("SELECT * FROM visitors");
@@ -44,4 +44,5 @@ class Visitor extends Model {
             ]);
         }
     }
+
 }

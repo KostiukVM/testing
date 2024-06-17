@@ -4,29 +4,39 @@ namespace App\Models;
 
 use App\Kernel\Model;
 
-use App\Interfaces\Model_Interface;
 use PDO;
 
-class Genre extends Model implements Model_Interface {
+class Genre extends Model {
+
+    public string $name;
+
     public static function getAll() {
         $stmt = self::$db->query("SELECT * FROM genres");
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
-
-    public static function getById($id) {
-        $stmt = self::$db->prepare("SELECT * FROM genres WHERE id = :id");
+    public static function getById($id)
+    {
+        $stmt = self::$db->prepare('SELECT * FROM genres WHERE id = :id');
         $stmt->execute(['id' => $id]);
-        return $stmt->fetch(PDO::FETCH_ASSOC);
+        return $stmt->fetchObject(__CLASS__);
     }
 
-    public static function add($data) {
-        $stmt = self::$db->prepare("INSERT INTO genres (name) VALUES (:name)");
-        return $stmt->execute($data);
-    }
+    public function save(): void
+    {
+        if (isset($this->id)) {
+            $stmt = self::$db->prepare('UPDATE genres SET name = :name WHERE id = :id');
+            $stmt->execute([
+                'id'      => $this->id,
+                'name'    => $this->name,
+            ]);
 
-    public static function update($id, $data) {
-        $data['id'] = $id;
-        $stmt = self::$db->prepare("UPDATE genres SET name = :name WHERE id = :id");
-        return $stmt->execute($data);
+        } else {
+            $stmt = self::$db->prepare('INSERT INTO genres (name) VALUES (:name)');
+            $stmt->execute([
+                'name'    => $this->name,
+
+            ]);
+
+        }
     }
 }

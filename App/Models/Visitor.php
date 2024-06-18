@@ -12,17 +12,24 @@ class Visitor extends Model {
     public string $email;
     public string $phone;
 
+
+    // запит до бд, для отримання масиву всіх відвідувачів
     public static function getAll() {
         $stmt = self::$db->query("SELECT * FROM visitors");
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    // отримати об'єкт відвідувача за ід
     public static function getById($id) {
         $stmt = self::$db->prepare("SELECT * FROM visitors WHERE id = :id");
         $stmt->execute(['id' => $id]);
         return $stmt->fetchObject(__CLASS__);
     }
 
+
+    // метод для зміни або створення відвідувача
+    // якщо такий відвідувач існує - редагувати
+    // якщо не існує - створити
     public function save(): void
     {
         if (isset($this->id)) {

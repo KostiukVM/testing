@@ -18,7 +18,8 @@ CREATE TABLE `records`(
                          `visitorId` BIGINT NOT NULL,
                          `bookId` BIGINT NOT NULL,
                          `date_of_issue` DATETIME NOT NULL,
-                         `return_date` DATETIME NULL
+                         `return_date` DATETIME NULL,
+                         `active` BOOLEAN NOT NULL DEFAULT FALSE
 );
 CREATE TABLE `visitors`(
                            `id` BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,

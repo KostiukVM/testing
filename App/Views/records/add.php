@@ -31,7 +31,7 @@
 
         <div class="form-group">
             <label for="date_of_issue">Date of Issue:</label>
-            <input type="date" class="form-control" name="date_of_issue" id="date_of_issue" required>
+            <input type="date" value="<?=date('Y-m-d') ?>" class="form-control" name="date_of_issue" id="date_of_issue" required>
         </div>
 
         <div class="form-group">

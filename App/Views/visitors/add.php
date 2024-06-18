@@ -30,7 +30,7 @@ global $router;
         </div>
         <div class="form-group">
             <label for="phone">Phone: (+38__________)</label>
-            <input type="text" class="form-control" id="phone" name="phone" required>
+            <input type="tel" class="form-control" id="phone" name="phone" required>
         </div>
         <button type="submit" class="btn btn-primary" name="Add">Add</button>
 

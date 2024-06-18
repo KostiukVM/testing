@@ -15,8 +15,10 @@ class Book extends Model
     public bool $inStock;
 
 
-    public static function getAll()
+    // запит до бд, для отримання масиву всіх книг
+    public static function getAll():array
     {
+        // замінити ід жанрів на назву жанрів
         $stmt = self::$db->query("
         SELECT b.id, b.name AS name, b.author AS author_name, b.year, g.name AS genre_name, b.inStock
         FROM books b
@@ -24,12 +26,16 @@ class Book extends Model
     ");
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+
+    // отримати масив книг, які є в наявності
     public static function getInStock()
     {
         $stmt = self::$db->prepare("SELECT * FROM books WHERE inStock = :inStock");
         $stmt->execute(['inStock' => true]);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+
+    // змінити значення inStock
     public function setInStock(bool $inStock): bool
     {
         $sql = "UPDATE books SET inStock = :inStock WHERE id = :id";
@@ -38,13 +44,17 @@ class Book extends Model
     }
 
 
-
+//отримати книгу як об'єкт за заданим ід
     public static function getById($id)
     {
         $stmt = self::$db->prepare('SELECT * FROM books WHERE id = :id');
         $stmt->execute(['id' => $id]);
         return $stmt->fetchObject(__CLASS__);
     }
+
+    // метод зміни або створення запису бд
+    // якщо книга з заданою ід існує, то редагуємо її
+    // якщо книга не існує, створюємо запис
     public function save(): void
     {
         if (isset($this->id)) {
@@ -68,12 +78,15 @@ class Book extends Model
 
         }
     }
+
+    //матод для повернення книги
     public function return(): void
     {
-        $book = Book::getById($this->id);
+        $book = Book::getById($this->id); // отримати ід конкретної книги
 
         if ($book) {
 
+            //змінити значення inStock на true і записати в бд
             $book['inStock'] = true;
             $sql = 'UPDATE books SET inStock = :inStock WHERE id = :id';
             $stmt = self::$db->prepare($sql);
@@ -81,7 +94,9 @@ class Book extends Model
         }
     }
 
-    public function delete()
+
+    // метод для видалення книги
+    public function delete(): void
     {
         $stmt = self::$db->prepare('DELETE FROM books WHERE id = :id');
         $stmt->execute(['id' => $this->id]);

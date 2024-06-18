@@ -30,7 +30,7 @@ global$router;
         </div>
         <div class="form-group">
             <label for="phone">Phone: <?php echo $visitor->phone; ?></label>
-            <input type="text" class="form-control" id="phone" name="phone" value="<?php echo $visitor->phone; ?>" required>
+            <input type="number" class="form-control" id="phone" name="phone" value="<?php echo $visitor->phone; ?>" required>
         </div>
         <button type="submit" class="btn btn-primary">Update Visitor</button>
     </form>

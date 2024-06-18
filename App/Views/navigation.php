@@ -12,9 +12,11 @@ global $router;
     <style>
         .navbar {
             position: fixed;
-            width: 1000%;
+            width: 100%;
             top: 0;
-            z-index: 1000;
+            left: 0;
+            z-index: 100;
+            background-color: aliceblue;
         }
 
         .nav-link {

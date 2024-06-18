@@ -36,7 +36,7 @@ $counter = 0;
                 <td><?= $record['date_of_issue'] ?></td>
                 <td><?= $record['return_date'] ?></td>
                 <td>
-                    <?php if (in_array($record['bookId'], $booksOutOfStock)): ?>
+                    <?php if ((in_array($record['bookId'], $booksOutOfStock)) && ($record['active'])): ?>
                         <a href="<?= $router->getUrl('/records/return/' . $record['id']); ?>" class="btn btn-sm btn-success"
                            onclick="return confirm('Are you sure you want to return this book?')">Return</a>
                     <?php endif; ?>

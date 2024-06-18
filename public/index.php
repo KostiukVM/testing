@@ -15,8 +15,6 @@ require_once __DIR__ . '/../App/Routes/routes.php';
 
 //dd($router);
 
-
-
 //require_once __DIR__ . '/../App/Views/navigation.php';
 $url = $_SERVER['REQUEST_URI'] ?? '/';
 $router->dispatch($url);

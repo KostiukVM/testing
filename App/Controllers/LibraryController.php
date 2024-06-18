@@ -8,6 +8,7 @@ class LibraryController extends Controller
     public function index(): void
     {
         global $router;
+        // відображення стартової сторінки
         $this->render('navigation', ['router'=> $router] );
     }
 }

@@ -42,15 +42,3 @@ INSERT INTO books (name, author, year, genreId, inStock) VALUES
                                                     ('Book 9', 'Author 9', 2012, 4, true),
                                                     ('Book 10', 'Author 10', 2011, 5, true);
 
-# створити тестові записи
-INSERT INTO records (`visitorId`, `bookId`, `date_of_issue`, `return_date`) VALUES
-                                                                                 (1, 1, '2024-01-01', NULL),
-                                                                                 (2, 2, '2024-01-02', NULL),
-                                                                                 (3, 3, '2024-01-03', '2024-01-09'),
-                                                                                 (4, 4, '2024-01-04', NULL),
-                                                                                 (5, 5, '2024-01-05', NULL),
-                                                                                 (6, 6, '2024-01-06', NULL),
-                                                                                 (7, 7, '2024-01-07', '2024-01-09'),
-                                                                                 (8, 8, '2024-01-08', NULL),
-                                                                                 (9, 9, '2024-01-09', NULL),
-                                                                                 (10, 10, '2024-01-10', NULL);

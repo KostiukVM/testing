@@ -1,8 +1,7 @@
 <?php
 global $router;
 $page = $_GET['page'] ?? '/';
-$counter = 0;
-//dd($router);
+
 ?>
 
 <!DOCTYPE html>
